@@ -16,7 +16,7 @@ export function TodoForm({ onCreate }) {
             name: elements.name.value,
             description: elements.description?.value ?? "",
             deadline: elements.deadline?.value ?? "",
-            priority: elements.priority?.value ?? "",
+            priority: elements.priority?.value ?? "none",
             completed: false
         }
         )
