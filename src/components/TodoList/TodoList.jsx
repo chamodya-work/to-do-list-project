@@ -1,5 +1,6 @@
 import styles from "./TodoList.module.css";
 import { PRIORITIES, PRIORITY_DEFAULT } from "../../constants/priorities";
+import { TodoListItem } from "../TodoListitem/TodoListitem";
 
 export function TodoList({ todos }) {
     return (
@@ -8,37 +9,7 @@ export function TodoList({ todos }) {
 
             <ul className={styles.TodoList}>
                 {todos.map((todo) => (
-                    <li
-                        key={todo.id}
-                        className={styles.TodoListItem}
-                        data-completed={todo.completed}
-                    >
-                        <div className={styles.Content}>
-                            <input
-                                type="checkbox"
-                                name="completed"
-                                defaultChecked={todo.completed}
-                                className={styles.Status}
-                            />
-
-                            <div className={styles.Info}>
-                                {todo.name}
-
-                                {todo.description && (
-                                    <span className={styles.Description}>{todo.description}</span>
-                                )}
-
-                                <div className={styles.AdditionalInfo}>
-                                    {todo.deadline} {todo.priority !== PRIORITY_DEFAULT && (
-                                        <span style={{ color: PRIORITIES[todo.priority].color }}>
-                                            {PRIORITIES[todo.priority].label}
-                                        </span>)}
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                    <TodoListItem key={todo.id} todo={todo} />
                 ))}
             </ul>
         </section >
