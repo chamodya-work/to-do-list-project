@@ -1,4 +1,5 @@
 import styles from "./TodoList.module.css";
+import { PRIORITIES, PRIORITY_DEFAULT } from "../../constants/priorities";
 
 export function TodoList({ todos }) {
     return (
@@ -28,13 +29,18 @@ export function TodoList({ todos }) {
                                 )}
 
                                 <div className={styles.AdditionalInfo}>
-                                    {todo.deadline} {todo.priority !== "none" && todo.priority}
+                                    {todo.deadline} {todo.priority !== PRIORITY_DEFAULT && (
+                                        <span style={{ color: PRIORITIES[todo.priority].color }}>
+                                            {PRIORITIES[todo.priority].label}
+                                        </span>)}
+
+
                                 </div>
                             </div>
                         </div>
                     </li>
                 ))}
             </ul>
-        </section>
+        </section >
     );
 }
