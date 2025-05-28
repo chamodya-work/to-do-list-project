@@ -41,7 +41,7 @@ const TODOS_DEFAULT = [
 
 function App() {
 
-  const [todos, setTodos] = useState([TODOS_DEFAULT]);
+  const [todos, setTodos] = useState(TODOS_DEFAULT);
 
   function handleCreate(newTodo) {
     setTodos((prevTOdos) => [...prevTOdos, { id: `${prevTOdos.length + 1}`, ...newTodo }])
