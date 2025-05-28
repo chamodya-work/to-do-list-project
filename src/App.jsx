@@ -47,6 +47,11 @@ function App() {
     setTodos((prevTOdos) => [...prevTOdos, { id: `${prevTOdos.length + 1}`, ...newTodo }])
   }
 
+  function handleUpdate(id, newTodo) {
+    setTodos((prevTOdos) => prevTOdos.map((todo) => todo.id === id ? newTodo : todo))
+  }
+
+
   return (
     <div className={styles.App}>
       <header className={styles.Header}>
@@ -55,7 +60,7 @@ function App() {
       </header>
 
       <div className={styles.AppContainer}><TodoForm onCreate={handleCreate} />
-        <TodoList todos={todos} />
+        <TodoList todos={todos} onUpdate={handleUpdate} />
       </div>
     </div>
   );
