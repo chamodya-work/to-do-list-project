@@ -1,5 +1,5 @@
 import { PRIORITIES, PRIORITY_DEFAULT } from "../../constants/priorities";
-import styles from "./TodoListItem.module.css";
+import styles from "./TodoListitem.module.css";
 export function TodoListItem({ todo, onUpdate }) {
 
     function handleCompleted(event) {
