@@ -6,11 +6,16 @@ export function TodoList({ todos }) {
             <ul>
                 {todos.map((todo) => (
                     <li key={todo.id}>
-                        {todo.name}
-                        <br />
-                        {todo.description}
-                        <br />
-                        {todo.deadline} {todo.priority}
+                        <input type="checkbox" name="completed" defaultChecked={todo.completed} />
+                        <div>
+                            {todo.name}
+                            <br />
+                            {todo.description}
+                            <br />
+                            {todo.deadline} {todo.priority !== "none" && todo.priority}
+
+                        </div>
+
                     </li>
                 ))}
             </ul>
