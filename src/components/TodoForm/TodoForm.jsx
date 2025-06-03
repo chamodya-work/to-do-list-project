@@ -1,8 +1,9 @@
 
 import { useState } from "react";
-import { PRIORITIES, PRIORITY_DEFAULT } from "../../constants/priorities";
+import { PRIORITY_DEFAULT } from "../../constants/priorities";
 
 import styles from "./TodoForm.module.css";
+import { TodoFormFields } from "../TodoFormFields/TodoFormFields";
 
 export function TodoForm({ onCreate }) {
 
@@ -35,6 +36,7 @@ export function TodoForm({ onCreate }) {
 
             <form className={styles.Form} onSubmit={handleSubmit}>
 
+                <TodoFormFields showAllFields={showAllFields} />
 
                 <input type="submit" value="Add" />
             </form>

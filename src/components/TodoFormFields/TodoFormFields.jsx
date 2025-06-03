@@ -1,4 +1,7 @@
-export function TodoFormFields() {
+import { PRIORITIES, PRIORITY_DEFAULT } from "../../constants/priorities";
+import styles from "./TodoFormFields.module.css";
+
+export function TodoFormFields({ showAllFields = true }) {
     return (
         <div className={styles.FormFields}>
             <div className={styles.FormField}>
