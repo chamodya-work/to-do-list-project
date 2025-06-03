@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { PRIORITIES, PRIORITY_DEFAULT } from "../../constants/priorities";
 import styles from "./TodoListitem.module.css";
+import { TodoFormFields } from "../TodoFormFields/TodoFormFields";
 export function TodoListItem({ todo, onUpdate }) {
 
 
@@ -37,11 +38,24 @@ export function TodoListItem({ todo, onUpdate }) {
                 </div>
 
             </div>
-            <button onClick={() => setIsEditing(true)}>📝</button>
+            <div className={styles.Controls}>
+                <button onClick={() => setIsEditing(true)}>📝</button>
+
+            </div>
         </div>
     )
 
-    const editingTemplate = <div>editing</div>
+    const editingTemplate = (
+        <form className={styles.Content} onReset={() => setIsEditing(false)}>
+            <TodoFormFields todo={todo} />
+            <div className="styles.Controls}>">
+                <input type="submit" value="💾" />
+                <input type="reset" value="❌" />
+            </div>
+
+
+        </form >
+    )
 
     return (
         <li
