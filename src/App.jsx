@@ -50,7 +50,9 @@ function App() {
   function handleUpdate(id, newTodo) {
     setTodos((prevTOdos) => prevTOdos.map((todo) => todo.id === id ? newTodo : todo))
   }
-
+  function handleDelete(id) {
+    setTodos((prevTOdos) => prevTOdos.filter((todo) => todo.id !== id))
+  }
 
   return (
     <div className={styles.App}>
@@ -60,7 +62,7 @@ function App() {
       </header>
 
       <div className={styles.AppContainer}><TodoForm onCreate={handleCreate} />
-        <TodoList todos={todos} onUpdate={handleUpdate} />
+        <TodoList todos={todos} onUpdate={handleUpdate} onDelete={handleDelete} />
       </div>
     </div>
   );

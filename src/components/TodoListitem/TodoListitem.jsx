@@ -2,7 +2,7 @@ import { useState } from "react";
 import { PRIORITIES, PRIORITY_DEFAULT } from "../../constants/priorities";
 import styles from "./TodoListitem.module.css";
 import { TodoFormFields } from "../TodoFormFields/TodoFormFields";
-export function TodoListItem({ todo, onUpdate }) {
+export function TodoListItem({ todo, onUpdate, onDelete }) {
 
 
     const [isEditing, setIsEditing] = useState(false)
@@ -61,6 +61,7 @@ export function TodoListItem({ todo, onUpdate }) {
             </div>
             <div className={styles.Controls}>
                 <button onClick={() => setIsEditing(true)}>📝</button>
+                <button onClick={() => onDelete(todo.id)}>🗑️</button>
 
             </div>
         </div>
