@@ -7,8 +7,28 @@ export function TodoListItem({ todo, onUpdate }) {
 
     const [isEditing, setIsEditing] = useState(false)
 
+
     function handleCompleted(event) {
         onUpdate(todo.id, { ...todo, completed: event.target.checked });
+    }
+
+
+    function handleEdit(event) {
+        event.preventDefault();
+
+        const { elements } = event.target
+        if (elements.name.value === "") {
+            return;
+        }
+        onUpdate(todo.id, {
+            name: elements.name.value,
+            description: elements.description.value,
+            deadline: elements.deadline.value,
+            priority: elements.priority.value,
+            completed: todo.completed
+        }
+        )
+        setIsEditing(false);
     }
 
     const viewingTemplate = (
@@ -29,11 +49,12 @@ export function TodoListItem({ todo, onUpdate }) {
                 )}
 
                 <div className={styles.AdditionalInfo}>
-                    {todo.deadline} {todo.priority !== PRIORITY_DEFAULT && (
+                    {todo.deadline}{" "}
+                    {todo.priority !== PRIORITY_DEFAULT && PRIORITIES[todo.priority] && (
                         <span style={{ color: PRIORITIES[todo.priority].color }}>
                             {PRIORITIES[todo.priority].label}
-                        </span>)}
-
+                        </span>
+                    )}
 
                 </div>
 
@@ -46,7 +67,7 @@ export function TodoListItem({ todo, onUpdate }) {
     )
 
     const editingTemplate = (
-        <form className={styles.Content} onReset={() => setIsEditing(false)}>
+        <form className={styles.Content} onReset={() => setIsEditing(false)} onSubmit={handleEdit}>
             <TodoFormFields todo={todo} />
             <div className="styles.Controls}>">
                 <input type="submit" value="💾" />
