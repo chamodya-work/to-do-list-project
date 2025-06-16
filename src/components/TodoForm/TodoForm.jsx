@@ -1,15 +1,16 @@
 
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { PRIORITY_DEFAULT } from "../../constants/priorities";
-
 import styles from "./TodoForm.module.css";
 import { TodoFormFields } from "../TodoFormFields/TodoFormFields";
 
 export function TodoForm({ onCreate }) {
 
     const [showAllFields, setShowAllFields] = useState(true)
+    const { register, handleSubmit, reset } = useForm()
 
-    function handleSubmit(event) {
+    function handleCreate(event) {
         event.preventDefault();
 
         const { elements } = event.target
@@ -34,9 +35,9 @@ export function TodoForm({ onCreate }) {
                     {showAllFields ? "Hide" : "show"} all fields</button>
             </h3>
 
-            <form className={styles.Form} onSubmit={handleSubmit}>
+            <form className={styles.Form} onSubmit={handleSubmit(handleCreate)}>
 
-                <TodoFormFields showAllFields={showAllFields} />
+                <TodoFormFields showAllFields={showAllFields} register={register} />
 
                 <input type="submit" value="Add" />
             </form>
