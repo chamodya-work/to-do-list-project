@@ -10,13 +10,7 @@ export function TodoForm({ onCreate }) {
     const [showAllFields, setShowAllFields] = useState(true)
     const { register, handleSubmit, reset } = useForm()
 
-    function handleCreate(event) {
-        event.preventDefault();
-
-        const { elements } = event.target
-        if (elements.name.value === "") {
-            return;
-        }
+    function handleCreate(data) {
         onCreate({
             name: elements.name.value,
             description: elements.description?.value ?? "",
