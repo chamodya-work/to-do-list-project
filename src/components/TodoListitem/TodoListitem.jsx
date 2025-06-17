@@ -7,7 +7,7 @@ export function TodoListItem({ todo, onUpdate, onDelete }) {
 
 
     const [isEditing, setIsEditing] = useState(false)
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit } = useForm({ defaultValues: todo });
 
 
     function handleCompleted(event) {
