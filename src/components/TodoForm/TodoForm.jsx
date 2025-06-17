@@ -8,18 +8,22 @@ import { TodoFormFields } from "../TodoFormFields/TodoFormFields";
 export function TodoForm({ onCreate }) {
 
     const [showAllFields, setShowAllFields] = useState(true)
-    const { register, handleSubmit, reset } = useForm()
+    const { register, handleSubmit, reset } = useForm(
+        {
+            defaultValues: {
+                description: "",
+                deadline: "",
+                priority: PRIORITY_DEFAULT,
+                completed: false
+
+            }
+        }
+    )
+
 
     function handleCreate(data) {
-        onCreate({
-            name: elements.name.value,
-            description: elements.description?.value ?? "",
-            deadline: elements.deadline?.value ?? "",
-            priority: elements.priority?.value ?? PRIORITY_DEFAULT,
-            completed: false
-        }
-        )
-        event.target.reset();
+        onCreate(data);
+        reset();
 
     }
     return (
