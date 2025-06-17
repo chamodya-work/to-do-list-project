@@ -32,7 +32,7 @@ export function TodoFormFields({ todo = {}, showAllFields = true, register }) {
                         <div className={styles.FormField}>
                             <label htmlFor="deadline">Deadline</label>
                             <input type="date" id="deadline" defaultValue={todo.deadline}
-                                {...register("deadline", { min: new Date().toISOString().split("T")[0] })}
+                                {...register("deadline", !todo.id && { min: new Date().toISOString().split("T")[0] })}
                             />
                         </div>
 
