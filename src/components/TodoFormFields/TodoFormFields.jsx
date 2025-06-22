@@ -12,7 +12,17 @@ export function TodoFormFields({ todo = {}, showAllFields = true, register, erro
                     autoComplete="off"
                     defaultValue={todo.name}
 
-                    {...register("name", { required: true, minLength: 3, maxLength: 30 })}
+                    {...register("name", {
+                        required: "name is required",
+                        minLength: {
+                            value: 3,
+                            message: "Name must be at least 3 characters long"
+                        },
+                        maxLength: {
+                            value: 50,
+                            message: "Name must be at most 50 characters long"
+                        }
+                    })}
                 />
             </div>
 
@@ -23,7 +33,12 @@ export function TodoFormFields({ todo = {}, showAllFields = true, register, erro
                         placeholder="Description"
                         rows="3"
                         defaultValue={todo.description}
-                        {...register("description", { maxLength: 200 })}
+                        {...register("description", {
+                            maxLength: {
+                                value: 200,
+                                message: "Description must be at most 200 characters long"
+                            }
+                        })}
                     />
 
                 </div>
@@ -32,7 +47,14 @@ export function TodoFormFields({ todo = {}, showAllFields = true, register, erro
                         <div className={styles.FormField}>
                             <label htmlFor="deadline">Deadline</label>
                             <input type="date" id="deadline" defaultValue={todo.deadline}
-                                {...register("deadline", !todo.id && { min: new Date().toISOString().split("T")[0] })}
+                                {...register("deadline", {
+                                    min: !todo.id && {
+                                        value: new Date().toISOString().split("T")[0],
+                                        message: "Deadline cant be date in the past"
+                                    }
+                                }
+                                )
+                                }
                             />
                         </div>
 
