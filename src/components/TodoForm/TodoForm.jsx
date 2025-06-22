@@ -8,7 +8,7 @@ import { TodoFormFields } from "../TodoFormFields/TodoFormFields";
 export function TodoForm({ onCreate }) {
 
     const [showAllFields, setShowAllFields] = useState(true)
-    const { register, handleSubmit, reset } = useForm(
+    const { register, handleSubmit, reset, formState: { errors } } = useForm(
         {
             defaultValues: {
                 description: "",
@@ -35,7 +35,7 @@ export function TodoForm({ onCreate }) {
 
             <form className={styles.Form} onSubmit={handleSubmit(handleCreate)}>
 
-                <TodoFormFields showAllFields={showAllFields} register={register} />
+                <TodoFormFields showAllFields={showAllFields} register={register} errors={errors} />
 
                 <input type="submit" value="Add" />
             </form>
