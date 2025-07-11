@@ -16,6 +16,7 @@ export function TodoFormFields({
           placeholder="Name*"
           autoComplete="off"
           defaultValue={todo.name}
+          aria-invalid={!!errors.name}
           {...register("name", {
             required: "name is required",
             minLength: {
@@ -41,6 +42,7 @@ export function TodoFormFields({
               placeholder="Description"
               rows="3"
               defaultValue={todo.description}
+              aria-invalid={!!errors.description}
               {...register("description", {
                 maxLength: {
                   value: 50,
@@ -62,6 +64,7 @@ export function TodoFormFields({
                 type="date"
                 id="deadline"
                 defaultValue={todo.deadline}
+                aria-invalid={!!errors.deadline}
                 {...register("deadline", {
                   min: !todo.id && {
                     value: new Date().toISOString().split("T")[0],
@@ -81,6 +84,7 @@ export function TodoFormFields({
               <select
                 defaultValue={todo.priority ?? PRIORITY_DEFAULT}
                 id="priority"
+                aria-invalid={!!errors.priority}
                 {...register("priority", {
                   validate: (value) =>
                     Object.keys(PRIORITIES).includes(value) ||
