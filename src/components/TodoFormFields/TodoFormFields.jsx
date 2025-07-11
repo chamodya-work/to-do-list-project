@@ -28,7 +28,9 @@ export function TodoFormFields({
             },
           })}
         />
-        {!!errors.name && errors.name.message}
+        {!!errors.name && (
+          <span className={styles.FormFieldError}> {errors.name.message}</span>
+        )}
       </div>
 
       {showAllFields && (
@@ -46,7 +48,11 @@ export function TodoFormFields({
                 },
               })}
             />
-            {!!errors.description && errors.description.message}
+            {!!errors.description && (
+              <span className={styles.FormFieldError}>
+                {errors.description.message}
+              </span>
+            )}
           </div>
 
           <div className={styles.FormGroup}>
@@ -63,7 +69,11 @@ export function TodoFormFields({
                   },
                 })}
               />
-              {!!errors.deadline && errors.deadline.message}
+              {!!errors.deadline && (
+                <span className={styles.FormFieldError}>
+                  {errors.deadline.message}
+                </span>
+              )}
             </div>
 
             <div className={styles.FormField}>
@@ -83,7 +93,11 @@ export function TodoFormFields({
                   </option>
                 ))}
               </select>
-              {!!errors.priority && errors.priority.message}
+              {!!errors.priority && (
+                <span className={styles.FormFieldError}>
+                  {errors.priority.message}
+                </span>
+              )}
             </div>
           </div>
         </>
