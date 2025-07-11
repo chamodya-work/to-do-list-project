@@ -12,9 +12,7 @@ export function TodoListItem({ todo, onUpdate, onDelete }) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm(
-    resolver: yupResolver(getTodoSchema()),
-    { defaultValues: todo });
+  } = useForm({ resolver: yupResolver(getTodoSchema()), defaultValues: todo });
 
   function handleCompleted(event) {
     onUpdate(todo.id, { ...todo, completed: event.target.checked });
