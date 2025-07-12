@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 import { PRIORITIES } from "../constants/priorities";
 
-export function getTodoSchema({isNew}) {
+export function getTodoSchema({isNew=false}={}) {
   const deadlineRule = Yup.string()
     .nullable()
     .transform((value, originalValue) => (originalValue === "" ? null : value))
