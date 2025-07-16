@@ -12,12 +12,11 @@ function App() {
     fetch(import.meta.env.VITE_MOCKAPI_BASE_URL, {
       method: "GET",
       headers: { "content-type": "application/json" },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      // handle error
-    });
+    })
+      .then((response) => {
+        !!response.ok && response.json();
+      })
+      .then(setTodos);
   }
 
   function handleCreate(newTodo) {
