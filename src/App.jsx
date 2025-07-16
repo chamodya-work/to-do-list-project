@@ -9,13 +9,11 @@ function App() {
   const [filters, setFilters] = useState({});
 
   function fetchTodos() {
-    fetch(import.meta.env.VITE_MOCKAPI_BASE_URL, {
+    fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}/todos`, {
       method: "GET",
       headers: { "content-type": "application/json" },
     })
-      .then((response) => {
-        !!response.ok && response.json();
-      })
+      .then((response) => !!response.ok && response.json())
       .then(setTodos);
   }
 
