@@ -8,6 +8,18 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [filters, setFilters] = useState({});
 
+  function fetchTodos() {
+    fetch(import.meta.env.VITE_MOCKAPI_BASE_URL, {
+      method: "GET",
+      headers: { "content-type": "application/json" },
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      // handle error
+    });
+  }
+
   function handleCreate(newTodo) {
     setTodos((prevTOdos) => [
       ...prevTOdos,
