@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TodoForm } from "./components/TodoForm/TodoForm";
 import { TodoList } from "./components/TodoList/TodoList";
 import styles from "./App.module.css";
@@ -18,6 +18,10 @@ function App() {
       })
       .then(setTodos);
   }
+
+  useEffect(() => {
+    fetchTodos();
+  }, []);
 
   function handleCreate(newTodo) {
     setTodos((prevTOdos) => [
