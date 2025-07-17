@@ -32,10 +32,15 @@ function App() {
   }
 
   function handleUpdate(id, newTodo) {
-    setTodos((prevTOdos) =>
-      prevTOdos.map((todo) => (todo.id === id ? newTodo : todo))
-    );
+    fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}/todos/${id}`, {
+      method: "PUT",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(newTodo),
+    })
+      .then((response) => !!response.ok && response.json())
+      .then(fetchTodos);
   }
+
   function handleDelete(id) {
     setTodos((prevTOdos) => prevTOdos.filter((todo) => todo.id !== id));
   }
