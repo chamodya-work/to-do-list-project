@@ -22,10 +22,13 @@ function App() {
   }, []);
 
   function handleCreate(newTodo) {
-    setTodos((prevTOdos) => [
-      ...prevTOdos,
-      { id: `${prevTOdos.length + 1}`, ...newTodo },
-    ]);
+    fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}/todos`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(newTodo),
+    })
+      .then((response) => !!response.ok && response.json())
+      .then(fetchTodos);
   }
 
   function handleUpdate(id, newTodo) {
