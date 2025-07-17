@@ -42,8 +42,13 @@ function App() {
   }
 
   function handleDelete(id) {
-    setTodos((prevTOdos) => prevTOdos.filter((todo) => todo.id !== id));
+    fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}/todos/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => !!response.ok && response.json())
+      .then(fetchTodos);
   }
+
   function filterTodos(todo) {
     const { completed, priority } = filters;
     return (
