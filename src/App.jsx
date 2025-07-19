@@ -18,13 +18,7 @@ function App() {
   }, [filters]);
 
   function handleCreate(newTodo) {
-    fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}todos`, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(newTodo),
-    })
-      .then((response) => !!response.ok && response.json())
-      .then(fetchTodos);
+    api.todos.create(newTodo).then(fetchTodos);
   }
 
   function handleUpdate(id, newTodo) {

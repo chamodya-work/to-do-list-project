@@ -13,9 +13,16 @@ export const api={
                   })
               
         },
-        create(){},
-        update(){},
-        delete(){},
+        create(data){
+            return fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}todos`, {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify(data),
+              })
+                .then((response) => !!response.ok && response.json())
+        },
+        update(id,data){},
+        delete(id){},
 
         }
     }
