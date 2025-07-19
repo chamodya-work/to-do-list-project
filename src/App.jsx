@@ -22,21 +22,11 @@ function App() {
   }
 
   function handleUpdate(id, newTodo) {
-    fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}todos/${id}`, {
-      method: "PUT",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(newTodo),
-    })
-      .then((response) => !!response.ok && response.json())
-      .then(fetchTodos);
+    api.todos.update(id, newTodo).then(fetchTodos);
   }
 
   function handleDelete(id) {
-    fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}todos/${id}`, {
-      method: "DELETE",
-    })
-      .then((response) => !!response.ok && response.json())
-      .then(fetchTodos);
+    api.todos.delete(id).then(fetchTodos);
   }
 
   return (

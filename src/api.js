@@ -21,8 +21,20 @@ export const api={
               })
                 .then((response) => !!response.ok && response.json())
         },
-        update(id,data){},
-        delete(id){},
+        update(id,data){
+            return fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}todos/${id}`, {
+                method: "PUT",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify(data),
+              })
+                .then((response) => !!response.ok && response.json())
+        },
+        delete(id){
+            return fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}todos/${id}`, {
+                  method: "DELETE",
+                })
+                  .then((response) => !!response.ok && response.json())
+        },
 
         }
     }
