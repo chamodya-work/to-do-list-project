@@ -3,23 +3,14 @@ import { TodoForm } from "./components/TodoForm/TodoForm";
 import { TodoList } from "./components/TodoList/TodoList";
 import styles from "./App.module.css";
 import { TodoFilters } from "./components/TodoFilters/TodoFilters";
+import { api } from "./api";
 
 function App() {
   const [todos, setTodos] = useState([]);
   const [filters, setFilters] = useState({});
 
   function fetchTodos() {
-    const searchParam = new URLSearchParams(filters).toString();
-
-    fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}todos?${searchParam}`, {
-      method: "GET",
-      headers: { "content-type": "application/json" },
-    })
-      .then((response) => {
-        if (response.ok) return response.json();
-        if (response.status === 404) return [];
-      })
-      .then(setTodos);
+    api.todos.getAll(filters).then(setTodos);
   }
 
   useEffect(() => {
