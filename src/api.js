@@ -1,9 +1,10 @@
+const BASE_URL=import.meta.env.VITE_MOCKAPI_BASE_URL
 export const api={
     todos:{
         getAll(params={}){
              const searchParam = new URLSearchParams(params).toString();
             
-                return fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}todos?${searchParam}`, {
+                return fetch(`${BASE_URL}todos?${searchParam}`, {
                   method: "GET",
                   headers: { "content-type": "application/json" },
                 })
@@ -14,7 +15,7 @@ export const api={
               
         },
         create(data){
-            return fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}todos`, {
+            return fetch(`${BASE_URL}todos`, {
                 method: "POST",
                 headers: { "content-type": "application/json" },
                 body: JSON.stringify(data),
@@ -22,7 +23,7 @@ export const api={
                 .then((response) => !!response.ok && response.json())
         },
         update(id,data){
-            return fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}todos/${id}`, {
+            return fetch(`${BASE_URL}todos/${id}`, {
                 method: "PUT",
                 headers: { "content-type": "application/json" },
                 body: JSON.stringify(data),
@@ -30,7 +31,7 @@ export const api={
                 .then((response) => !!response.ok && response.json())
         },
         delete(id){
-            return fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}todos/${id}`, {
+            return fetch(`${BASE_URL}todos/${id}`, {
                   method: "DELETE",
                 })
                   .then((response) => !!response.ok && response.json())
