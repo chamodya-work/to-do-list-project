@@ -8,7 +8,7 @@ const http=axios.create({
   },
 });  
 
-http.interceptors.response.use((response) => response.data);
+http.interceptors.response.use(({data}) => data);
 
 export const api={
     todos:{
