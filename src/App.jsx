@@ -9,24 +9,44 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [filters, setFilters] = useState({});
 
-  function fetchTodos() {
-    api.todos.getAll(filters).then(setTodos);
+  async function fetchTodos() {
+    try {
+      const data = await api.todos.getAll(filters);
+      setTodos(data);
+    } catch (error) {
+      console.error("Failed to fetch todos:", error);
+    }
   }
 
   useEffect(() => {
     fetchTodos();
   }, [filters]);
 
-  function handleCreate(newTodo) {
-    api.todos.create(newTodo).then(fetchTodos);
+  async function handleCreate(newTodo) {
+    try {
+      await api.todos.create(newTodo);
+      await fetchTodos();
+    } catch (error) {
+      console.error("Failed to create todos:", error);
+    }
   }
 
-  function handleUpdate(id, newTodo) {
-    api.todos.update(id, newTodo).then(fetchTodos);
+  async function handleUpdate(id, newTodo) {
+    try {
+      await api.todos.update(id, newTodo);
+      await fetchTodos();
+    } catch (error) {
+      console.error("Failed to update todos:", error);
+    }
   }
 
-  function handleDelete(id) {
-    api.todos.delete(id).then(fetchTodos);
+  async function handleDelete(id) {
+    try {
+      await api.todos.delete(id);
+      await fetchTodos();
+    } catch (error) {
+      console.error("Failed to delete todos:", error);
+    }
   }
 
   return (
