@@ -1,18 +1,22 @@
-const BASE_URL=import.meta.env.VITE_MOCKAPI_BASE_URL
+import axios from "axios";
+
+const http=axios.create({
+  baseURL:import.meta.env.VITE_MOCKAPI_BASE_URL,
+  timeout:5000,
+  headers: {
+    "content-type": "application/json",
+  },
+});  
+
+
 export const api={
     todos:{
         getAll(params={}){
-             const searchParam = new URLSearchParams(params).toString();
-            
-                return fetch(`${BASE_URL}todos?${searchParam}`, {
-                  method: "GET",
-                  headers: { "content-type": "application/json" },
-                })
-                  .then((response) => {
-                    if (response.ok) return response.json();
-                    if (response.status === 404) return [];
-                  })
-              
+          return http
+          .get("todos", { params })
+          .catch((error)=>
+            error.response.status === 404 ? [] : Promise.reject(error)
+        );
         },
         create(data){
             return fetch(`${BASE_URL}todos`, {
