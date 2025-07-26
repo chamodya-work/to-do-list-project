@@ -4,6 +4,7 @@ import { api } from '../api';
 export function useTodos(){
     const [todos, setTodos] = useState([]);
   const [filters, setFilters] = useState({});
+  const[errorMessage,setErrorMessage]=useState();
 
   async function fetchTodos() {
     try {
@@ -52,6 +53,10 @@ export function useTodos(){
     create: handleCreate,
     update: handleUpdate,
     delete: handleDelete,
+    error:{
+        message: errorMessage,
+        clear: ()=>setErrorMessage(),
+    }
   }
 
 }
