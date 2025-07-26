@@ -3,9 +3,11 @@ import { TodoForm } from "./components/TodoForm/TodoForm";
 import { TodoList } from "./components/TodoList/TodoList";
 import styles from "./App.module.css";
 import { TodoFilters } from "./components/TodoFilters/TodoFilters";
+import { useTodos } from "./hooks/todo";
 import { api } from "./api";
 
 function App() {
+  const todos = useTodos();
   return (
     <div className={styles.App}>
       <header className={styles.Header}>
@@ -14,13 +16,13 @@ function App() {
       </header>
 
       <div className={styles.AppContainer}>
-        <TodoForm onCreate={handleCreate} />
-        <TodoFilters onFilter={setFilters} />
+        <TodoForm onCreate={todos.create} />
+        <TodoFilters onFilter={todos.filter} />
 
         <TodoList
-          todos={todos}
-          onUpdate={handleUpdate}
-          onDelete={handleDelete}
+          todos={todos.data}
+          onUpdate={todos.update}
+          onDelete={todos.delete}
         />
       </div>
     </div>
