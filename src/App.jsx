@@ -11,6 +11,7 @@ function App() {
   const todos = useTodos();
   return (
     <div className={styles.App}>
+      <h2>{JSON.stringify(todos.isLoading)}</h2>
       <header className={styles.Header}>
         <img className={styles.Logo} src="/to-do.png" />
         <h2 className={styles.Title}>To-Do App</h2>
