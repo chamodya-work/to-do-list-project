@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { TodoForm } from "./components/TodoForm/TodoForm";
 import { TodoList } from "./components/TodoList/TodoList";
+import { Alert } from "./components/Alert/Alert";
 import styles from "./App.module.css";
 import { TodoFilters } from "./components/TodoFilters/TodoFilters";
 import { useTodos } from "./hooks/todo";
@@ -16,6 +17,9 @@ function App() {
       </header>
 
       <div className={styles.AppContainer}>
+        {!!todos.error.message && (
+          <Alert onClear={todos.error.clear}> {todos.error.message}</Alert>
+        )}
         <TodoForm onCreate={todos.create} />
         <TodoFilters onFilter={todos.filter} />
 

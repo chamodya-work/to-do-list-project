@@ -11,7 +11,7 @@ export function useTodos(){
       const data = await api.todos.getAll(filters);
       setTodos(data);
     } catch (error) {
-      console.error("Failed to fetch todos:", error);
+      setErrorMessage("Failed to fetch todos:", error);
     }
   }
 
@@ -24,7 +24,7 @@ export function useTodos(){
       await api.todos.create(newTodo);
       await fetchTodos();
     } catch (error) {
-      console.error("Failed to create todos:", error);
+      setErrorMessage("Failed to create todos:", error);
     }
   }
 
@@ -33,7 +33,7 @@ export function useTodos(){
       await api.todos.update(id, newTodo);
       await fetchTodos();
     } catch (error) {
-      console.error("Failed to update todos:", error);
+      setErrorMessage("Failed to update todos:", error);
     }
   }
 
@@ -42,7 +42,7 @@ export function useTodos(){
       await api.todos.delete(id);
       await fetchTodos();
     } catch (error) {
-      console.error("Failed to delete todos:", error);
+      setErrorMessager("Failed to delete todos:", error);
     }
   }
 
